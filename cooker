@@ -443,6 +443,11 @@ generate_qmp_feeds_file() {
     this_qmp_feed_url="$QMP_DOWNLOADS_URL/Releases/$VERSION_NUMBER/packages/$(get_arch_from_ib $target)/$r"
     echo "src/gz qmp_$r $this_qmp_feed_url" >> $qmp_feeds_dir/qmpfeeds.conf
   done
+
+  for r in $sdk_install_repos; do
+    this_qmp_feed_repo="openwrt_${r} "
+    sed -i "/${this_qmp_feed_repo}/d" ${qmp_feeds_dir}/distfeeds.conf
+  done
 }
 
 get_profile_names() {
