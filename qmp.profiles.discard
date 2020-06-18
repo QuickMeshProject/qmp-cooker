@@ -1,3 +1,144 @@
+[ "$TPROFILE" == compex_wpe72-8M ] && {
+  NAME=Compex_WPE72-8M
+  ARCH=ar71xx
+  SUBARCH=generic
+  FLAVOR=qmpsmall
+  PROFILE=WPE72_8M
+  FACTORY=$DISTCL-$FLAVOR-$ARCH-$SUBARCH-wpe72-squashfs-8M-factory.img
+  SYSUPGRADE=$DISTCL-$FLAVOR-$ARCH-$SUBARCH-wpe72-squashfs-8M-sysupgrade.img
+}
+
+[ "$TPROFILE" == dragino_dragino2 ] && {
+  NAME=Dragino_Dragino-2_MS14
+  ARCH=ar71xx
+  SUBARCH=generic
+  FLAVOR=qmpsmall
+  PROFILE=dragino2
+  SYSUPGRADE=$DISTCL-$FLAVOR-$ARCH-$SUBARCH-$PROFILE-$SQUASHSYSUPGRADE
+}
+
+[ "$TPROFILE" == mercury_mc-mac1200r ] && {
+  NAME=Mercury_MAC1200R
+  ARCH=ar71xx
+  SUBARCH=generic
+  FLAVOR=qmpsmall
+  PROFILE=mc-mac1200r
+  FACTORY=$DISTCL-$FLAVOR-$ARCH-$SUBARCH-$PROFILE-$SQUASHFACTORY
+  SYSUPGRADE=$DISTCL-$FLAVOR-$ARCH-$SUBARCH-$PROFILE-$SQUASHSYSUPGRADE
+}
+
+[ "$TPROFILE" == mikrotik_rb-nand-64m ] && {
+  NAME=MikroTik_RouterBoard_NAND_flash
+  ARCH=ar71xx
+  SUBARCH=mikrotik
+  PROFILE=nand-64m
+  FLAVOR=qmpsmall
+  SYSUPGRADE=$DISTCL-$FLAVOR-$ARCH-$SUBARCH-$PROFILE-$SQUASHSYSUPGRADE
+}
+
+[ "$TPROFILE" == mikrotik_rb-nand-large ] && {
+  NAME=MikroTik_RouterBoard_NAND_flash_large
+  ARCH=ar71xx
+  SUBARCH=mikrotik
+  PROFILE=nand-large
+  FLAVOR=qmpsmall
+  SYSUPGRADE=$DISTCL-$FLAVOR-$ARCH-$SUBARCH-$PROFILE-$SQUASHSYSUPGRADE
+}
+
+[ "$TPROFILE" == mikrotik_rb-nand-large-ac ] && {
+  NAME=MikroTik_RouterBoard_NAND_flash_largeflash_802.11ac
+  ARCH=ar71xx
+  SUBARCH=mikrotik
+  PROFILE=nand-large-ac
+  FLAVOR=qmpsmall
+  SYSUPGRADE=$DISTCL-$FLAVOR-$ARCH-$SUBARCH-$PROFILE-$SQUASHSYSUPGRADE
+}
+
+[ "$TPROFILE" == mikrotik_rb-nor-flash-16M ] && {
+  NAME=MikroTik_RouterBoard_SPI_NOR_flash_802.11abgn
+  ARCH=ar71xx
+  SUBARCH=mikrotik
+  PROFILE=rb-nor-flash-16M
+  FLAVOR=qmpsmall
+  SYSUPGRADE=$DISTCL-$FLAVOR-$ARCH-$SUBARCH-$PROFILE-$SQUASHSYSUPGRADE
+}
+
+[ "$TPROFILE" == mikrotik_rb-nor-flash-16M-ac ] && {
+  NAME=MikroTik_RouterBoard_SPI_NOR_flash_802.11ac
+  ARCH=ar71xx
+  SUBARCH=mikrotik
+  PROFILE=rb-nor-flash-16M-ac
+  FLAVOR=qmpsmall
+  SYSUPGRADE=$DISTCL-$FLAVOR-$ARCH-$SUBARCH-$PROFILE-$SQUASHSYSUPGRADE
+}
+
+[ "$TPROFILE" == mikrotik_rb921gs-5Hpacd-15s ] && {
+  NAME=MikroTik_RB921GS-5HPacD-15S
+  ARCH=ar71xx
+  SUBARCH=mikrotik
+  PROFILE=nand-large-ac
+  FLAVOR=qmpsmall
+  SYSUPGRADE=$DISTCL-$FLAVOR-$ARCH-$SUBARCH-$PROFILE-$SQUASHSYSUPGRADE
+}
+
+[ "$TPROFILE" == mikrotik_rblhg-5nd ] && {
+ NAME=MikroTik_RBLHG-5nD
+ ARCH=ar71xx
+ SUBARCH=mikrotik
+ PROFILE=rb-nor-flash-16M
+ FLAVOR=qmpsmall
+ SYSUPGRADE=$DISTCL-$FLAVOR-$ARCH-$SUBARCH-$PROFILE-$SQUASHSYSUPGRADE
+}
+
+[ "$TPROFILE" == mikrotik_rb-sxt5n ] && {
+  NAME=MikroTik_RBSXT5nDr2
+  ARCH=ar71xx
+  SUBARCH=mikrotik
+  PROFILE=nand-large
+  FLAVOR=qmpsmall
+  SYSUPGRADE=$DISTCL-$FLAVOR-$ARCH-$SUBARCH-$PROFILE-$SQUASHSYSUPGRADE
+}
+
+[ "$TPROFILE" == ubnt-rocket-m-ti ] && {
+  NAME=Ubiquiti_Rocket-M-TI
+  ARCH=ar71xx
+  SUBARCH=generic
+  FLAVOR=qmpsmall
+  PROFILE=ubnt-rocket-m-ti
+  FACTORY=$DISTCL-$FLAVOR-$ARCH-$SUBARCH-$PROFILE-$SQUASHFACTORY
+  SYSUPGRADE=$DISTCL-$FLAVOR-$ARCH-$SUBARCH-$PROFILE-$SQUASHSYSUPGRADE
+}
+
+[ "$TPROFILE" == ubnt-rocket-m-xw ] && {
+  NAME=Ubiquiti_Rocket-M-XW
+  ARCH=ar71xx
+  SUBARCH=generic
+  FLAVOR=qmpsmall
+  PROFILE=ubnt-rocket-m-xw
+  FACTORY=$DISTCL-$FLAVOR-$ARCH-$SUBARCH-$PROFILE-$SQUASHFACTORY
+  SYSUPGRADE=$DISTCL-$FLAVOR-$ARCH-$SUBARCH-$PROFILE-$SQUASHSYSUPGRADE
+}
+
+[ "$TPROFILE" == ubnt-uap-pro ] && {
+  NAME=Ubiquiti_UniFi-AP-PRO
+  ARCH=ar71xx
+  SUBARCH=generic
+  FLAVOR=qmpsmall
+  PROFILE=ubnt-uap-pro
+  FACTORY=$DISTCL-$FLAVOR-$ARCH-$SUBARCH-$PROFILE-$SQUASHFACTORY
+  SYSUPGRADE=$DISTCL-$FLAVOR-$ARCH-$SUBARCH-$PROFILE-$SQUASHSYSUPGRADE
+}
+
+[ "$TPROFILE" == ubnt-unifi  ] && {
+  NAME=Ubiquiti_UniFi-AP
+  ARCH=ar71xx
+  SUBARCH=generic
+  FLAVOR=qmpsmall
+  PROFILE=ubnt-unifi
+  FACTORY=$DISTCL-$FLAVOR-$ARCH-$SUBARCH-$PROFILE-$SQUASHFACTORY
+  SYSUPGRADE=$DISTCL-$FLAVOR-$ARCH-$SUBARCH-$PROFILE-$SQUASHSYSUPGRADE
+}
+
 [ "$TPROFILE" == wt1520-4M ] && {
   NAME=Nexx_WT1520-4M
   ARCH=ramips
