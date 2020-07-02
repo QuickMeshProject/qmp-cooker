@@ -15,3 +15,4 @@ files
 communities/
 lede/
 openwrt/
+qmp_rel_log*
