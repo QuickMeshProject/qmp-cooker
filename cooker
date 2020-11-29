@@ -235,6 +235,10 @@ build_sdk() {
 
     cp ${sdk_config}.local $sdk/.config 2>/dev/null || cp ${sdk_config} $sdk/.config
     make -C $sdk defconfig
+
+    echo "-> Copy usign keys from ../keys"
+    cp -v ../keys/key-build* $sdk
+
     make -j$J -C $sdk V=$V && [ -z "$no_link_ib" ] && {
         [ -f "$ib/repositories.original.conf" ] || download_ib $target
         cat $ib/repositories.original.conf > $tmp_dir/repositories.sdk.conf
