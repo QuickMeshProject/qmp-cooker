@@ -115,6 +115,9 @@ cook() {
         download_ib $target
     }
 
+    echo "-> Copy public qMp.cat usign keys from keys"
+    cp -v keys/* $ib/keys
+
     [ -n "$use_remote_pkgs" ] && {
         local arch=`get_arch_from_ib $target`
         echo "-> Using remote repository for ImageBuilder, architecture: $arch"
@@ -236,7 +239,7 @@ build_sdk() {
     cp ${sdk_config}.local $sdk/.config 2>/dev/null || cp ${sdk_config} $sdk/.config
     make -C $sdk defconfig
 
-    echo "-> Copy usign keys from ../keys"
+    echo "-> Copy private and public qMp.cat usign keys from ../keys"
     cp -v ../keys/key-build* $sdk
 
     make -j$J -C $sdk V=$V && [ -z "$no_link_ib" ] && {
