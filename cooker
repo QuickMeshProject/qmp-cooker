@@ -513,6 +513,8 @@ make_qmp_release() {
     COMBINEDSQUASHVDI="combined-squashfs.vdi"
     COMBINEDSQUASHVMDK="combined-squashfs.vmdk"
     EXT4SDCARD="ext4-sdcard.img.gz"
+    EXT4COMBINEDIMGGZ="ext4-combined.img.gz"
+    SQUASHCOMBINEDIMGGZ="squashfs-combined.img.gz"
     SDCARDVFATEXT4="sdcard-vfat-ext4.img"
     SQUASHFACTORY="squashfs-factory.bin"
     SQUASHSYSUPGRADE="squashfs-sysupgrade.bin"
