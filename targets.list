@@ -5,7 +5,7 @@ bcm27xx/bcm2708
 bcm27xx/bcm2709
 bcm27xx/bcm2710
 bcm27xx/bcm2711
-mpc85xx/generic
+mpc85xx/p1010
 ramips/rt305x
 ramips/mt7620
 ramips/mt7621
