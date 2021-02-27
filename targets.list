@@ -1,11 +1,10 @@
-ar71xx/generic
-ar71xx/mikrotik
-ar71xx/tiny
 ath25/generic
 ath79/generic
-brcm2708/bcm2708
-brcm2708/bcm2709
-brcm2708/bcm2710
+ath79/mikrotik
+bcm27xx/bcm2708
+bcm27xx/bcm2709
+bcm27xx/bcm2710
+bcm27xx/bcm2711
 mpc85xx/generic
 ramips/rt305x
 ramips/mt7620
