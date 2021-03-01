@@ -522,6 +522,12 @@ make_qmp_release() {
 
     [ -f qmp.profiles.conf ] && . qmp.profiles.conf
 
+    snapshot_release_string='SNAPSHOT'
+    if [[ $openwrt_release == *"$snapshot_release_string"* ]]; then
+      DISTCL="${DISTCL,,}*"
+      DISTLEGACY="${DISTLEGACY,,}*"
+    fi
+
     mkdir -p $bin_output
     cp DEVICES $bin_output/
 
@@ -542,28 +548,28 @@ make_qmp_release() {
         fw_file="$output_dir/$(echo $FACTORY)"
         output_file=$bin_output"/qMp_"$VERSION_NUMBER"-"$VERSION_NICK"_"$NAME"_factory_"$(date +%Y%m%d-%H%M)".bin"
         echo cp "$fw_file" "$output_file"
-        cp "$fw_file" "$output_file"
+        cp $fw_file "$output_file"
       }
       [ "$SYSUPGRADE" ] && {
         echo "$NAME - SYSUPGRADE"
         fw_file="$output_dir/$(echo $SYSUPGRADE)"
         output_file=$bin_output"/qMp_"$VERSION_NUMBER"-"$VERSION_NICK"_"$NAME"_sysupgrade_"$(date +%Y%m%d-%H%M)".bin"
         echo cp "$fw_file" "$output_file"
-        cp "$fw_file" "$output_file"
+        cp $fw_file "$output_file"
       }
       [ "$SQUASHIMAGE" ] && {
         echo "$NAME - SQUASHIMAGE"
         fw_file="$output_dir/$(echo $SQUASHIMAGE)"
         output_file=$bin_output"/qMp_"$VERSION_NUMBER"-"$VERSION_NICK"_"$NAME"_combined-squashfs_"$(date +%Y%m%d-%H%M)"."$BINEXT
         echo cp "$fw_file" "$output_file"
-        cp "$fw_file" "$output_file"
+        cp $fw_file "$output_file"
       }
       [ "$EXT4IMAGE" ] && {
         echo "$NAME - EXT4IMAGE"
         fw_file="$output_dir/$(echo $EXT4IMAGE)"
         output_file=$bin_output"/qMp_"$VERSION_NUMBER"-"$VERSION_NICK"_"$NAME"_combined-ext4_"$(date +%Y%m%d-%H%M)"."$BINEXT
         echo cp "$fw_file" "$output_file"
-        cp "$fw_file" "$output_file"
+        cp $fw_file "$output_file"
       }
 
       PKG=$pre_PKG
