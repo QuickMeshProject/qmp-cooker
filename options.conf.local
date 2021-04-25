@@ -1,5 +1,5 @@
 release=Leverage
-version=5.0.0-rc2
+version=5.0.0
 openwrt_release=19.07.7
 base_url=https://downloads.openwrt.org/releases/$openwrt_release/targets/
 communities_git=https://github.com/libremesh/network-profiles.git
