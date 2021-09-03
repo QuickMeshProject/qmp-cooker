@@ -17,26 +17,28 @@ new file mode 100644
 index 0000000000..30213bdeda
 --- /dev/null
 +++ b/package/firmware/wireless-regdb/patches/999-regdbus.patch
-@@ -0,0 +1,19 @@
+@@ -0,0 +1,21 @@
 +Tweak for international waters.
 +---
 +--- a/db.txt
 ++++ b/db.txt
-+@@ -1282,12 +1282,8 @@
-+	(5735 - 5835 @ 80), (30)
-+
++@@ -1580,13 +1580,13 @@
 + country US: DFS-FCC
-+-	(2402 - 2472 @ 40), (30)
-+-	# 5.15 ~ 5.25 GHz: 30 dBm for master mode, 23 dBm for clients
-+-	(5170 - 5250 @ 80), (23), AUTO-BW
-+-	(5250 - 5330 @ 80), (23), DFS, AUTO-BW
-+-	(5490 - 5730 @ 160), (23), DFS
-+-	(5735 - 5835 @ 80), (30)
-++	(2402 - 2483.5 @ 40), (30)
-++	(5150 - 5835 @ 80), (30)
-+	# 60g band
-+	# reference: http://cfr.regstoday.com/47cfr15.aspx#47_CFR_15p255
-+	# channels 1,2,3, EIRP=40dBm(43dBm peak)
++ 	(2400 - 2472 @ 40), (30)
++ 	# 5.15 ~ 5.25 GHz: 30 dBm for master mode, 23 dBm for clients
++-	(5150 - 5250 @ 80), (23), AUTO-BW
++-	(5250 - 5350 @ 80), (23), DFS, AUTO-BW
+++	(5150 - 5250 @ 80), (30), AUTO-BW
+++	(5250 - 5350 @ 80), (30), AUTO-BW
++ 	# This range ends at 5725 MHz, but channel 144 extends to 5730 MHz.
++ 	# Since 5725 ~ 5730 MHz belongs to the next range which has looser
++ 	# requirements, we can extend the range by 5 MHz to make the kernel
++ 	# happy and be able to use channel 144.
++-	(5470 - 5730 @ 160), (23), DFS
+++	(5470 - 5730 @ 160), (30)
++ 	(5730 - 5850 @ 80), (30)
++ 	# 60g band
++ 	# reference: section IV-D https://docs.fcc.gov/public/attachments/FCC-16-89A1.pdf
 EOF
 
 ( cd $base_feed && git apply $patch_file && {
