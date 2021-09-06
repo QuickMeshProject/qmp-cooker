@@ -28,7 +28,7 @@ index 0000000000..30213bdeda
 +-	(5150 - 5250 @ 80), (23), AUTO-BW
 ++	(5150 - 5250 @ 80), (30), AUTO-BW
 +-	(5250 - 5350 @ 80), (23), DFS, AUTO-BW
-++	(5250 - 5350 @ 80), (30), DFS, AUTO-BW
+++	(5250 - 5350 @ 80), (30), AUTO-BW
 +	# This range ends at 5725 MHz, but channel 144 extends to 5730 MHz.
 +	# Since 5725 ~ 5730 MHz belongs to the next range which has looser
 +	# requirements, we can extend the range by 5 MHz to make the kernel
