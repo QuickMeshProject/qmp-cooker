@@ -7,10 +7,10 @@ bcm27xx/bcm2710
 bcm27xx/bcm2711
 ipq40xx/mikrotik
 mpc85xx/p1010
-ramips/rt305x
 ramips/mt7620
 ramips/mt7621
 ramips/mt76x8
+ramips/rt305x
 sunxi/cortexa53
 sunxi/cortexa7
 sunxi/cortexa8
