@@ -1,6 +1,6 @@
 release=Leverage
-version=5.0.1
-openwrt_release=19.07.8
+version=5.0.2
+openwrt_release=19.07.10
 base_url=https://downloads.openwrt.org/releases/$openwrt_release/targets/
 communities_git=https://github.com/libremesh/network-profiles.git
 communities_dir=communities
