@@ -36,9 +36,9 @@ index 0000000000..30213bdeda
 + 	# happy and be able to use channel 144.
 +-	(5470 - 5730 @ 160), (23), DFS
 ++	(5470 - 5730 @ 160), (30)
-+ 	(5730 - 5850 @ 80), (30)
-+ 	# 60g band
-+ 	# reference: section IV-D https://docs.fcc.gov/public/attachments/FCC-16-89A1.pdf
++ 	(5730 - 5850 @ 80), (30), AUTO-BW
++ 	# https://www.federalregister.gov/documents/2021/05/03/2021-08802/use-of-the-5850-5925-ghz-band
++ 	# max. 33 dBm AP @ 20MHz, 36 dBm AP @ 40Mhz+, 6 dB less for clients
 EOF
 
 ( cd $base_feed && git apply $patch_file && {
