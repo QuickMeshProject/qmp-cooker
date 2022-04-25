@@ -17,12 +17,13 @@ new file mode 100644
 index 0000000000..30213bdeda
 --- /dev/null
 +++ b/package/firmware/wireless-regdb/patches/999-regdbus.patch
-@@ -0,0 +1,19 @@
+@@ -0,0 +1,21 @@
 +Tweak for international waters.
 +---
 +--- a/db.txt
 ++++ b/db.txt
-+@@ -1579,13 +1579,13 @@ country US: DFS-FCC
++@@ -1579,13 +1579,13 @@
++ country US: DFS-FCC
 +	(2400 - 2472 @ 40), (30)
 +	# 5.15 ~ 5.25 GHz: 30 dBm for master mode, 23 dBm for clients
 +-	(5150 - 5250 @ 80), (23), AUTO-BW
@@ -34,10 +35,10 @@ index 0000000000..30213bdeda
 +	# requirements, we can extend the range by 5 MHz to make the kernel
 +	# happy and be able to use channel 144.
 +-	(5470 - 5730 @ 160), (23), DFS
-++	(5470 - 5730 @ 160), (23)
-+	(5730 - 5850 @ 80), (30)
-+	# 60g band
-+	# reference: section IV-D https://docs.fcc.gov/public/attachments/FCC-16-89A1.pdf
+++	(5470 - 5730 @ 160), (30)
++	(5730 - 5850 @ 80), (30), AUTO-BW
++	# https://www.federalregister.gov/documents/2021/05/03/2021-08802/use-of-the-5850-5925-ghz-band
++       # max. 33 dBm AP @ 20MHz, 36 dBm AP @ 40Mhz+, 6 dB less for clients
 EOF
 
 ( cd $base_feed && git apply $patch_file && {
