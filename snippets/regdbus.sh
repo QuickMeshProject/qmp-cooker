@@ -17,27 +17,34 @@ new file mode 100644
 index 0000000000..30213bdeda
 --- /dev/null
 +++ b/package/firmware/wireless-regdb/patches/999-regdbus.patch
-@@ -0,0 +1,19 @@
+@@ -0,0 +1,21 @@
 +Tweak for international waters.
 +---
 +--- a/db.txt
 ++++ b/db.txt
-+@@ -1579,13 +1579,13 @@ country US: DFS-FCC
++@@ -1620,19 +1620,19 @@
++ country US: DFS-FCC
++	# S1G Channel 1-3
++	(902-904 @ 2), (30)
++	# S1G Channel 5-35
++	(904-920 @ 16), (30)
++	# S1G Channel 37-51
++	(920-928 @ 8), (30)
 +	(2400 - 2472 @ 40), (30)
 +	# 5.15 ~ 5.25 GHz: 30 dBm for master mode, 23 dBm for clients
 +-	(5150 - 5250 @ 80), (23), AUTO-BW
 ++	(5150 - 5250 @ 80), (30), AUTO-BW
-+-	(5250 - 5350 @ 80), (23), DFS, AUTO-BW
++-	(5250 - 5350 @ 80), (24), DFS, AUTO-BW
 ++	(5250 - 5350 @ 80), (30), AUTO-BW
 +	# This range ends at 5725 MHz, but channel 144 extends to 5730 MHz.
 +	# Since 5725 ~ 5730 MHz belongs to the next range which has looser
 +	# requirements, we can extend the range by 5 MHz to make the kernel
 +	# happy and be able to use channel 144.
-+-	(5470 - 5730 @ 160), (23), DFS
-++	(5470 - 5730 @ 160), (23)
-+	(5730 - 5850 @ 80), (30)
-+	# 60g band
-+	# reference: section IV-D https://docs.fcc.gov/public/attachments/FCC-16-89A1.pdf
++-	(5470 - 5730 @ 160), (24), DFS
+++	(5470 - 5730 @ 160), (30)
++	(5730 - 5850 @ 80), (30), AUTO-BW
++	# https://www.federalregister.gov/documents/2021/05/03/2021-08802/use-of-the-5850-5925-ghz-band
++       # max. 33 dBm AP @ 20MHz, 36 dBm AP @ 40Mhz+, 6 dB less for clients
 EOF
 
 ( cd $base_feed && git apply $patch_file && {
