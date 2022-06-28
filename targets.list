@@ -1,6 +1,7 @@
 ath25/generic
 ath79/generic
 ath79/mikrotik
+ath79/tiny
 bcm27xx/bcm2708
 bcm27xx/bcm2709
 bcm27xx/bcm2710
