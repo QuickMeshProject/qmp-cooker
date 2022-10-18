@@ -1,6 +1,6 @@
 release=Rhodopes
-version=5.1.3
-openwrt_release=21.02.3
+version=5.1.5
+openwrt_release=21.02.5
 base_url=https://downloads.openwrt.org/releases/$openwrt_release/targets/
 communities_git=https://github.com/libremesh/network-profiles.git
 communities_dir=communities
