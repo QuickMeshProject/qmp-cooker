@@ -1,6 +1,6 @@
 release=Neumann
 version=testing
-openwrt_release=22.03.4
+openwrt_release=22.03.6
 base_url=https://downloads.openwrt.org/releases/$openwrt_release/targets/
 communities_git=https://github.com/libremesh/network-profiles.git
 communities_dir=communities
