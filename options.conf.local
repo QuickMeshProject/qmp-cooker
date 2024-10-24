@@ -1,6 +1,6 @@
 release=Dikti
 version=5.2.0-rc1
-openwrt_release=22.03.6
+openwrt_release=22.03.7
 base_url=https://downloads.openwrt.org/releases/$openwrt_release/targets/
 communities_git=https://github.com/libremesh/network-profiles.git
 communities_dir=communities
