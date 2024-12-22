@@ -16,7 +16,7 @@ Before using lime-sdk, make sure your Linux system has the required dependencies
 Install [Docker](https://www.docker.com/get-docker) and run the following command:
 
 	docker build -t cooker .
-	docker run -it cooker -v "$(pwd":/app --<parameters>
+	docker run -it cooker -v "$(pwd)":/app --<parameters>
 
 ## Targets, profiles and flavors
 LibreMesh can be used on many different devices (target and profile) and can be packed in many different ways (flavors), depending on your needs. To this end, it is important to choose the right options for building your firmware.
@@ -54,9 +54,9 @@ One of the most important things regarding the flavor is the internal flash size
 
 Currently there are three main flavors:
 
-  * **lime_default:** the recommended for routers with more than 4MB of flash. It includes all required and optional software.
-  * **lime_mini:** the recommended for routers of 4MB, made for end-users, includes a minimal web interface, but new software cannot be installed (opkg is not available).
-  * **lime_zero:** for advanced users, it does not include web interface, just the basic software to mesh the network but it does include opkg, so new software can be installed.
+ **· lime_default**: the recommended for routers with more than 4MB of flash. It includes all required and optional software.
+ **· lime_mini:** the recommended for routers of 4MB, made for end-users, includes a minimal web interface, but new software cannot be installed (opkg is not available).
+ **· lime_zero:** for advanced users, it does not include web interface, just the basic software to mesh the network but it does include opkg, so new software can be installed.
 
 ## Building and cooking
 These are two different steps. **Building** means to compile and prepare all the required packages for LibreMesh. To **cook** means taking the packages (depending on the flavor) and generating the firmware ready to install on your device.
@@ -236,4 +236,3 @@ Time to time, if you want to update the code with the official one you might add
      - To see/debug build errors use J (number of threads) and V (verbose) system vars
     
         J=1 V=s ./cooker -b ar71xx/generic --profile=tl-wdr3500-v1
-
