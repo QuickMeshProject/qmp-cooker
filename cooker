@@ -514,10 +514,14 @@ make_qmp_release() {
     COMBINEDSQUASHVMDK="combined-squashfs.vmdk"
     EXT4SDCARD="ext4-sdcard.img.gz"
     EXT4COMBINEDIMGGZ="ext4-combined.img.gz"
+    EXT4FACTORYIMGGZ="ext4-factory.img.gz"
+    EXT4SYSUPGRADEIMGGZ="ext4-sysupgrade.img.gz"
     SQUASHCOMBINEDIMGGZ="squashfs-combined.img.gz"
     SDCARDVFATEXT4="sdcard-vfat-ext4.img"
     SQUASHFACTORY="squashfs-factory.bin"
+    SQUASHFACTORYIMGGZ="squashfs-factory.img.gz"
     SQUASHSYSUPGRADE="squashfs-sysupgrade.bin"
+    SQUASHSYSUPGRADEIMGGZ="squashfs-sysupgrade.img.gz"
     SQUASHFSSDCARD="squashfs-sdcard.img.gz"
 
     [ -f qmp.profiles.conf ] && . qmp.profiles.conf
@@ -549,6 +553,7 @@ make_qmp_release() {
         output_file=$bin_output"/qMp_"$VERSION_NUMBER"-"$VERSION_NICK"_"$NAME"_factory_"$(date +%Y%m%d-%H%M)".bin"
         echo cp "$fw_file" "$output_file"
         cp $fw_file "$output_file"
+        unset FACTORY
       }
       [ "$SYSUPGRADE" ] && {
         echo "$NAME - SYSUPGRADE"
@@ -556,6 +561,7 @@ make_qmp_release() {
         output_file=$bin_output"/qMp_"$VERSION_NUMBER"-"$VERSION_NICK"_"$NAME"_sysupgrade_"$(date +%Y%m%d-%H%M)".bin"
         echo cp "$fw_file" "$output_file"
         cp $fw_file "$output_file"
+        unset SYSUPGRADE
       }
       [ "$SQUASHIMAGE" ] && {
         echo "$NAME - SQUASHIMAGE"
@@ -563,6 +569,7 @@ make_qmp_release() {
         output_file=$bin_output"/qMp_"$VERSION_NUMBER"-"$VERSION_NICK"_"$NAME"_combined-squashfs_"$(date +%Y%m%d-%H%M)"."$BINEXT
         echo cp "$fw_file" "$output_file"
         cp $fw_file "$output_file"
+        unset SQUASHIMAGE
       }
       [ "$EXT4IMAGE" ] && {
         echo "$NAME - EXT4IMAGE"
@@ -570,10 +577,42 @@ make_qmp_release() {
         output_file=$bin_output"/qMp_"$VERSION_NUMBER"-"$VERSION_NICK"_"$NAME"_combined-ext4_"$(date +%Y%m%d-%H%M)"."$BINEXT
         echo cp "$fw_file" "$output_file"
         cp $fw_file "$output_file"
+        unset EXT4IMAGE
+      }
+      [ "$SQUASHSYSUPGRADEIMG" ] && {
+        echo "$NAME - SQUASHSYSUPGRADE"
+        fw_file="$output_dir/$(echo $SQUASHSYSUPGRADEIMG)"
+        output_file=$bin_output"/qMp_"$VERSION_NUMBER"-"$VERSION_NICK"_"$NAME"_squashfs-sysupgrade_"$(date +%Y%m%d-%H%M)"."$BINEXT
+        echo cp "$fw_file" "$output_file"
+        cp $fw_file "$output_file"
+        unset SQUASHSYSUPGRADEIMG
+      }
+      [ "$EXT4SYSUPGRADE" ] && {
+        echo "$NAME - EXT4SYSUPGRADE"
+        fw_file="$output_dir/$(echo $EXT4SYSUPGRADE)"
+        output_file=$bin_output"/qMp_"$VERSION_NUMBER"-"$VERSION_NICK"_"$NAME"_ext4-sysupgrade_"$(date +%Y%m%d-%H%M)"."$BINEXT
+        echo cp "$fw_file" "$output_file"
+        cp $fw_file "$output_file"
+        unset EXT4SYSUPGRADE
+      }
+      [ "$SQUASHFACTORYIMG" ] && {
+        echo "$NAME - SQUASHFACTORYIMG"
+        fw_file="$output_dir/$(echo $SQUASHFACTORYIMG)"
+        output_file=$bin_output"/qMp_"$VERSION_NUMBER"-"$VERSION_NICK"_"$NAME"_squashfs-factory_"$(date +%Y%m%d-%H%M)"."$BINEXT
+        echo cp "$fw_file" "$output_file"
+        cp $fw_file "$output_file"
+        unset SQUASHFACTORYIMG
+      }
+      [ "$EXT4FACTORY" ] && {
+        echo "$NAME - EXT4FACTORY"
+        fw_file="$output_dir/$(echo $EXT4FACTORY)"
+        output_file=$bin_output"/qMp_"$VERSION_NUMBER"-"$VERSION_NICK"_"$NAME"_ext4-factory_"$(date +%Y%m%d-%H%M)"."$BINEXT
+        echo cp "$fw_file" "$output_file"
+        cp $fw_file "$output_file"
+        unset EXT4FACTORY
       }
 
       PKG=$pre_PKG
-
     done
 
     cd "$bin_output"
