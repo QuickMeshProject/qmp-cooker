@@ -586,7 +586,7 @@ make_qmp_release() {
 }
 
 [ -z "$1" ] && usage
-OPTS=$(getopt -o hd:fb:c:d:i:j:rb: -l targets,build-all,download-all,profiles:,flavors,profile:,flavor:,\
+OPTS=$(getopt -o hd:fb:c:i:j:r -l targets,build-all,download-all,profiles:,flavors,profile:,flavor:,\
 update-feeds,no-update,no-link-ib,remote,ib,sdk,sdk-file:,ib-file:,help,force,clean,\
 communities,update-communities,community:,cook-all,package:,extra-pkg:,refresh,force-local -n $0 -- "$@") || { usage; exit 1; }
 eval set -- "$OPTS"
