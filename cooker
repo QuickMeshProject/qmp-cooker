@@ -2,8 +2,8 @@
 
 RESULT=0
 
-[ -f options.conf.local ] && . options.conf.local || . options.conf
-[ -f ${flavors_file}.local ] && . ${flavors_file}.local || . ${flavors_file}
+if [ -f options.conf.local ]; then . options.conf.local; else . options.conf; fi
+if [ -f ${flavors_file}.local ]; then . ${flavors_file}.local; else . ${flavors_file}; fi
 
 [ ! -d "$tmp_dir" ] && mkdir -p "$tmp_dir"
 [ ! -d "$downloads_dir" ] && mkdir -p "$downloads_dir"
