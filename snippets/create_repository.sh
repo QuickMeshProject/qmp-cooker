@@ -5,7 +5,7 @@
 OUTDIR="${1:-output}"
 [ ! -d $OUTDIR ] && mkdir -p $OUTDIR
 [ ! -d $OUTDIR/packages ] && mkdir -p $OUTDIR/packages
-[ ! -d $OUTDIR/targers ] && mkdir -p $OUTDIR/targets
+[ ! -d $OUTDIR/targets ] && mkdir -p $OUTDIR/targets
 
 echo "-> Output directory: $OUTDIR"
 
