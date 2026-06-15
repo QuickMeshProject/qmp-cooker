@@ -221,7 +221,7 @@ build_sdk() {
         download_feeds
     }
     cp -f "$feeds_file" "$sdk/feeds.conf"
-    [ -z "$no_update" ] && (cd $sdk && scripts/feeds update -a) || (cd $sdk && scripts/feeds update -i)
+    if [ -z "$no_update" ]; then (cd $sdk && scripts/feeds update -a); else (cd $sdk && scripts/feeds update -i); fi
 
     [ -n "$sdk_clean" ] && clean_sdk $target
 
