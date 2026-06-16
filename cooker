@@ -3,7 +3,11 @@
 RESULT=0
 
 if [ -f options.conf.local ]; then . options.conf.local; else . options.conf; fi
-if [ -f ${flavors_file}.local ]; then . ${flavors_file}.local; else . ${flavors_file}; fi
+[ -f "$flavors_file" ] || {
+    echo "-> Flavors file not found: $flavors_file (check flavors_file in options.conf[.local])"
+    exit 1
+}
+. "$flavors_file"
 
 [ ! -d "$tmp_dir" ] && mkdir -p "$tmp_dir"
 [ ! -d "$downloads_dir" ] && mkdir -p "$downloads_dir"
@@ -437,7 +441,7 @@ unpack_ib() {
 }
 
 list_flavors() {
-    cat qmp.flavors.conf | egrep -v "^_|^#|^$" | awk -F= '{print $1}'
+    grep -Ev "^_|^#|^$" "$flavors_file" | awk -F= '{print $1}'
 }
 
 generate_qmp_feeds_file() {
