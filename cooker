@@ -494,8 +494,12 @@ get_profile_names() {
 
 get_arch_from_ib() {
     local target=$1
-    [ ! -d $release/$target/ib ] && download_ib $target
-    grep CONFIG_TARGET_ARCH_PACKAGES $release/$target/ib/.config | cut -d= -f2 | tr -d \"
+    local ib_config=$release/$target/ib/.config
+    [ -f $ib_config ] || {
+        echo "-> ImageBuilder for $target not available, cannot read its architecture" >&2
+        return 1
+    }
+    grep CONFIG_TARGET_ARCH_PACKAGES $ib_config | cut -d= -f2 | tr -d \"
 }
 
 list_profiles() {
