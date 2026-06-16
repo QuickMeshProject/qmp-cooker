@@ -788,17 +788,19 @@ profile=${profile:-Default}
 [ "$build_sdk" == "1" ] && build_sdk $target
 
 [ "$cook" == "1" ] && {
-    [ -n "$community" ] && [ -z "$community_profile" ] && {
+    if [ -n "$community" ] && [ -z "$community_profile" ]; then
         echo "-> If community is defined you must also specify its profile: --community=name/profile"
         exit 1
-    } || [ -n "$community" ] && {
+    elif [ -n "$community" ]; then
         download_communities
         community_files="$PWD/$communities_dir/$community/$community_profile"
-        [ ! -d "$community_files" ] && {
+        if [ -d "$community_files" ]; then
+            echo "-> Using community files from $community_files"
+        else
             echo "-> The community and profile specified does not exist ($community_files)"
             exit 1
-        } || echo "-> Using community files from $community_files"
-    }
+        fi
+    fi
     if [ "$profile" == "Default" ]; then
       cook_all_profiles $target
     else
