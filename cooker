@@ -480,8 +480,13 @@ list_profiles() {
 # join a list of new packages into PKG var, older has preference
 join_packages() {
   local new="$@"
+  local p q base
   for p in $new; do
-    echo "$PKG" | egrep -q "^(|-)${p#-*}($|)" || PKG="$PKG $p"
+    base="${p#-}"
+    for q in $PKG; do
+      [ "${q#-}" = "$base" ] && continue 2
+    done
+    PKG="$PKG $p"
   done
 }
 
