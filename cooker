@@ -114,6 +114,11 @@ cook() {
     local ib="$release/$target/ib"
     local output_dir="$PWD/$bin_output/$target/$profile/$flavor"
 
+    list_flavors | grep -Fxq "$flavor" || {
+        echo "-> Unknown flavor: '$flavor' (run '$0 --flavors' for the list)"
+        return 1
+    }
+
     [ ! -d "$ib" ] && {
         echo "-> ImageBuilder for target $target not ready"
         download_ib $target
