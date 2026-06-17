@@ -457,8 +457,12 @@ unpack_ib() {
         tar xf $file -C $output/ && {
            [ -d $output/ib ] && rm -rf $output/ib
            mv $output/openwrt-imagebuilder* $output/ib
-           cp -f $output/ib/repositories.conf $output/ib/repositories.original.conf
-           sed -i 's%^src/gz .*_routing .*$%# &%' $output/ib/repositories.original.conf
+           # Backup the IB's apk repositories file (a plain list of
+           # packages.adb URLs, one per line, that the IB reads via apk
+           # --repositories-file). qMp builds the packages from the routing feed
+           # locally, so comment out the upstream routing repo line in the snapshot.
+           cp -f $output/ib/repositories $output/ib/repositories.original.conf
+           sed -i 's%^\(https\?://.*/routing/.*\)$%# \1%' $output/ib/repositories.original.conf
        } || echo "-> Error installing ImageBuilder"
     }
 }
