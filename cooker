@@ -134,8 +134,18 @@ cook() {
     }
 
     [ -z "$use_remote_pkgs" ] && {
-        [ ! -f $ib/repositories.sdk.conf ] && build_sdk $target
-        cp -f $ib/repositories.sdk.conf $ib/repositories.conf
+        local sdk="$release/$target/sdk"
+        # Make sure the IB has the qMp packages: build the SDK if it has not
+        # produced any packages yet, otherwise just (re)link its built .apk
+        # into the IB's packages/ dir.
+        if ls $sdk/bin/packages/*/*/*.apk >/dev/null 2>&1; then
+            link_sdk_to_ib $target
+        else
+            build_sdk $target
+        fi
+        # Active repo list = upstream feeds with the routing feed commented
+        # out; the qMp packages come from the IB's local packages/ dir.
+        cp -f $ib/repositories.original.conf $ib/repositories
     }
 
     echo "-> Cooking $target/$profile"
@@ -216,6 +226,40 @@ clean_sdk() {
     make -j$J V=$V -C $sdk package/clean
 }
 
+# Link the SDK's built packages into the ImageBuilder. The apk ImageBuilder
+# picks up local packages from its own packages/ dir (it reindexes and signs
+# them at image time), so we just drop the SDK's built .apk there instead of
+# writing opkg "src ... file:" repository lines.
+link_sdk_to_ib() {
+    local target="$1"
+    local sdk="$release/$target/sdk"
+    local ib="$release/$target/ib"
+    [ -d "$ib" ] || download_ib $target
+    echo "-> Linking IB with SDK (copying built .apk packages into the IB)"
+    [ -n "$force_local" ] && echo "-> Force all local packages is on"
+    local ib_pkg_dir="$ib/packages"
+    mkdir -p $ib_pkg_dir
+    for r in $PWD/$sdk/bin/packages/*/*; do
+      [ -d "$r" ] || continue
+      [ -z "$force_local" ] && {
+        case $r in
+        # we build the master branch of the routing feed, hence
+        # don't include it in the filter
+        *base | *luci | *packages | *telephony)
+           continue
+          ;;
+        esac
+      }
+      cp -f $r/*.apk $ib_pkg_dir/ 2>/dev/null
+    done
+    # Add target packages (kmods) if force-local enabled
+    [ -n "$force_local" ] && {
+        local target_pkg_dir="$PWD/$sdk/bin/targets/$target/packages"
+        [ -d "$target_pkg_dir" ] && cp -f $target_pkg_dir/*.apk $ib_pkg_dir/ 2>/dev/null
+    }
+    echo "-> Copied SDK packages into $ib_pkg_dir"
+}
+
 build_sdk() {
     local target="$1"
     local sdk="$release/$target/sdk"
@@ -265,35 +309,7 @@ build_sdk() {
         return 1
     fi
 
-    [ -z "$no_link_ib" ] && {
-        [ -f "$ib/repositories.original.conf" ] || download_ib $target
-        cat $ib/repositories.original.conf > $tmp_dir/repositories.sdk.conf
-        echo "-> Linking IB with SDK"
-        [ -n "$force_local" ] && echo "-> Force all local packages is on"
-        echo "" >> $tmp_dir/repositories.sdk.conf
-        echo "##SDK_repos" >> $tmp_dir/repositories.sdk.conf
-        for r in $PWD/$sdk/bin/packages/*/*; do
-          [ -z "$force_local" ] && {
-            case $r in
-            # we build the master branch of the routing feed, hence
-            # don't include it in the filter
-            *base | *luci | *packages | *telephony)
-               continue
-              ;;
-            esac
-          }
-          echo "src sdk_$(basename $r) file:$r" >> $tmp_dir/repositories.sdk.conf
-        done
-        # Add target packages (kmods) if force-local enabled
-        [ -n "$force_local" ] && {
-            local target_pkg_dir="$PWD/$sdk/bin/targets/$target/packages"
-            [ -d "$target_pkg_dir" ] && \
-            echo "src sdk_target file:$target_pkg_dir" >> $tmp_dir/repositories.sdk.conf
-        }
-        echo "" >> $tmp_dir/repositories.sdk.conf
-        cp -f $tmp_dir/repositories.sdk.conf $ib/repositories.sdk.conf
-        echo "-> Using custom $tmp_dir/repositories.sdk.conf"
-    }
+    [ -z "$no_link_ib" ] && link_sdk_to_ib $target
     return 0
 }
 
